@@ -20,9 +20,18 @@ Add-Type -AssemblyName System.IO.Compression.FileSystem
 Remove-Item 'C:\Labs\' -Recurse -ErrorAction Ignore
 $tmpName = [System.IO.Path]::GetRandomFileName
 $tmpFolder = "C:\_content"
+
+# If the folder already exists, remove it and any contents
+Remove-Item $tmpFolder -Recurse -Force -ErrorAction Ignore
+
+# Create the folder
 md -Path $tmpFolder
 $tmpFile = "$tmpFolder\labs.zip"
+
+# Download and extract the labs
 "Downloading $labSource to $tmpFile"
 (new-object System.Net.Webclient).DownloadFile($labSource, $tmpFile)
 [System.IO.Compression.ZipFile]::ExtractToDirectory($tmpFile, 'C:\')
+
+# Cleanup
 rd -Path $tmpFolder -Recurse -Force
