@@ -12,7 +12,7 @@
 		},
 		"adminUsername": {
 			"type": "string",
-			"defaultValue": "devadmin"
+			"defaultValue": "devguy"
 		},
 		"adminPassword": {
 			"type": "securestring"
