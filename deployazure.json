@@ -130,7 +130,7 @@
 					"imageReference": {
 						"publisher": "MicrosoftVisualStudio",
 						"offer": "VisualStudio",
-						"sku": "VS-2017-Comm-WS2016",
+						"sku": "VS-2017-Comm-Latest-WS2016",
 						"version": "latest"
 					},
 					"osDisk": {
