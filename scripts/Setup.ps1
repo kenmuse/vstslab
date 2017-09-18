@@ -18,7 +18,7 @@ $packages.Split(";") | ForEach {
 # Download and unpack labs
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 Remove-Item 'C:\Labs\' -Recurse -ErrorAction Ignore
-$tmpFile = [System.IO.Path]::GetTempFileName
+$tmpFile = New-TemporaryFile
 "Downloading $labSource to $tmpFile"
 (new-object System.Net.Webclient).DownloadFile($labSource, $tmpFile)
 [System.IO.Compression.ZipFile]::ExtractToDirectory($tmpfile, 'C:\')
