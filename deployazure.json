@@ -14,13 +14,13 @@
 			"type": "string",
 			"defaultValue": "devadmin"
 		},
-			"adminPassword": {
-				"type": "securestring"
-			},
-			"labSource": {
-				"type": "string",
-				"defaultValue": "https://kmuse.blob.core.windows.net/labs/vsts-import/labs.zip?sv=2015-04-05&sr=b&sig=IEBcXkTl7o7M2sBrNErGIQ6TcU6nJ4mbJwET1GjHAn8%3D&se=2017-10-31T22%3A57%3A59Z&sp=r"
-			},
+		"adminPassword": {
+			"type": "securestring"
+		},
+		"labSource": {
+			"type": "string",
+			"defaultValue": "https://kmuse.blob.core.windows.net/labs/vsts-import/labs.zip?sv=2015-04-05&sr=b&sig=IEBcXkTl7o7M2sBrNErGIQ6TcU6nJ4mbJwET1GjHAn8%3D&se=2017-10-31T22%3A57%3A59Z&sp=r"
+		},
 		"virtualMachineSize": {
 			"type": "string",
 			"defaultValue": "Standard_D4s_v3"
@@ -38,15 +38,15 @@
 		},
 		"virtualNetworkName": {
 			"type": "string",
-			"defaultValue": "devenv-vnet"
+			"defaultValue": "[concat(parameters('virtualMachineName'), '-vnet')]"
 		},
 		"networkInterfaceName": {
 			"type": "string",
-			"defaultValue": "devenv-nic"
+			"defaultValue": "[concat(parameters('virtualMachineName'), '-nic')]"
 		},
 		"networkSecurityGroupName": {
 			"type": "string",
-			"defaultValue": "devenv-nsg"
+			"defaultValue": "[concat(parameters('virtualMachineName'), '-nsg')]"
 		},
 		"addressPrefix": {
 			"type": "string",
@@ -62,7 +62,7 @@
 		},
 		"publicIpAddressName": {
 			"type": "string",
-			"defaultValue": "devenv-ip"
+			"defaultValue": "[concat(parameters('virtualMachineName'), '-ip')]"
 		},
 		"publicIpAddressType": {
 			"type": "string",
@@ -70,7 +70,7 @@
 		},
 		"autoShutdownStatus": {
 			"type": "string",
-			"defaultValue": "enabled"
+			"defaultValue": "Enabled"
 		},
 		"autoShutdownTime": {
 			"type": "string",
@@ -84,13 +84,13 @@
 			"type": "string",
 			"defaultValue": "Disabled"
 		},
-			"securityToken": {
-				"type": "string",
-				"defaultValue": "",
-				"metadata": {
-					"description": "Security token used for retrieving remote script file"
-				}
-			},
+		"securityToken": {
+			"type": "string",
+			"defaultValue": "",
+			"metadata": {
+				"description": "Security token used for retrieving remote script file"
+			}
+		},
 		"setupScriptFileName": {
 			"type": "string",
 			"defaultValue": "Setup.ps1",
@@ -170,20 +170,20 @@
 					"dependsOn": [
 						"[concat('Microsoft.Compute/virtualMachines/', parameters('virtualMachineName'))]"
 					],
-									"tags": {
-										"displayName": "SetupScripts"
-									},
+					"tags": {
+						"displayName": "SetupScripts"
+					},
 					"properties": {
 						"publisher": "Microsoft.Compute",
 						"type": "CustomScriptExtension",
 						"typeHandlerVersion": "1.9",
 						"autoUpgradeMinorVersion": true,
-											"settings": {
-												"fileUris": [
-													"[concat(parameters('setupScriptLocation'), parameters('setupScriptFileName'), parameters('securityToken'))]"
-												],
-												"commandToExecute": "[concat('powershell -ExecutionPolicy bypass -File ',parameters('setupScriptFileName'),' -packages ',parameters('chocolateyPackages'), ' -labSource ', parameters('labSource'))]"
-											}
+						"settings": {
+							"fileUris": [
+								"[concat(parameters('setupScriptLocation'), parameters('setupScriptFileName'), parameters('securityToken'))]"
+							],
+							"commandToExecute": "[concat('powershell -ExecutionPolicy bypass -File ',parameters('setupScriptFileName'),' -packages ',parameters('chocolateyPackages'), ' -labSource ', parameters('labSource'))]"
+						}
 					}
 				}
 			]
