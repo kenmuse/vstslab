@@ -86,7 +86,7 @@
 		},
 			"securityToken": {
 				"type": "string",
-				"defaultValue": "sv=2015-04-05&sr=b&sig=Mcj8pKD4OuKV31ZXvRlCphTJ30qjl4al6ZHmfUBie2Y%3D&se=2017-10-31T21%3A31%3A19Z&sp=r",
+				"defaultValue": "",
 				"metadata": {
 					"description": "Security token used for retrieving remote script file"
 				}
@@ -100,7 +100,7 @@
 		},
 		"setupScriptLocation": {
 			"type": "string",
-			"defaultValue": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/visual-studio-dev-vm-chocolatey/scripts/",
+			"defaultValue": "https://raw.githubusercontent.com/kenmuse/vstslab/master/scripts/",
 			"metadata": {
 				"description": "Public URI location of PowerShell setup script"
 			}
