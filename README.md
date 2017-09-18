@@ -1,5 +1,5 @@
 # VSTS Source Control Labs - Virtual Machine
-This will allow you to quickly setup and configure an Azure labs environment.
+This will allow you to quickly setup and configure a virtual development environment containing Visual Studio 2017 Community Edition, Eclipse Oxygen, and the Git tools. The virtual environment will also be pre-configured with a copy of the labs in C:\Labs.
 
 <!-- [![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/) -->
 
