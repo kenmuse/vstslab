@@ -20,8 +20,9 @@ Add-Type -AssemblyName System.IO.Compression.FileSystem
 Remove-Item 'C:\Labs\' -Recurse -ErrorAction Ignore
 $tmpName = [System.IO.Path]::GetRandomFileName
 $tmpFolder = "C:\_content"
+md -Path $tmpFolder
 $tmpFile = "$tmpFolder\labs.zip"
 "Downloading $labSource to $tmpFile"
 (new-object System.Net.Webclient).DownloadFile($labSource, $tmpFile)
 [System.IO.Compression.ZipFile]::ExtractToDirectory($tmpFile, 'C:\')
-[System.IO.Directory]::Delete($tmpFolder)
+rd -Path $tmpFolder -Recurse -Force
