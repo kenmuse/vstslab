@@ -2,6 +2,6 @@
 	"itemDisplayName": "VSTS Source Code Labs",
 	"description": "This template creates a virtual machine with Visual Studio and Eclipse pre-installed.",
 	"summary": "Creates a virtual machine with Visual Studio 2017 and Eclipse",
-	"githubUsername": "kmuse",
+	"githubUsername": "kenmuse",
 	"dateUpdated": "2017-09-17"
 }
