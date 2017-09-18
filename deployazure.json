@@ -36,7 +36,7 @@
 				"description": "Type of storage to use for the disk"
 			}
 		},
-		"virtualNetworkName": {
+		"vnetName": {
 			"type": "string",
 			"defaultValue": "[concat(parameters('virtualMachineName'), '-vnet')]"
 		},
@@ -47,6 +47,10 @@
 		"networkSecurityGroupName": {
 			"type": "string",
 			"defaultValue": "[concat(parameters('virtualMachineName'), '-nsg')]"
+		},
+		"publicIpAddressName": {
+			"type": "string",
+			"defaultValue": "[concat(parameters('virtualMachineName'), '-ip')]"
 		},
 		"addressPrefix": {
 			"type": "string",
@@ -60,17 +64,13 @@
 			"type": "string",
 			"defaultValue": "10.0.16.0/24"
 		},
-		"publicIpAddressName": {
-			"type": "string",
-			"defaultValue": "[concat(parameters('virtualMachineName'), '-ip')]"
-		},
 		"publicIpAddressType": {
 			"type": "string",
 			"defaultValue": "Dynamic"
 		},
 		"autoShutdownStatus": {
 			"type": "string",
-			"defaultValue": "Enabled"
+			"defaultValue": "enabled"
 		},
 		"autoShutdownTime": {
 			"type": "string",
@@ -114,7 +114,7 @@
 		}
 	},
 	"variables": {
-		"vnetId": "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
+		"vnetId": "[resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName'))]",
 		"subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]"
 	},
 	"resources": [
@@ -211,7 +211,7 @@
 			]
 		},
 		{
-			"name": "[parameters('virtualNetworkName')]",
+			"name": "[parameters('vnetName')]",
 			"type": "Microsoft.Network/virtualNetworks",
 			"apiVersion": "2016-12-01",
 			"location": "[parameters('location')]",
@@ -237,7 +237,7 @@
 			"apiVersion": "2016-09-01",
 			"location": "[parameters('location')]",
 			"dependsOn": [
-				"[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]",
+				"[concat('Microsoft.Network/virtualNetworks/', parameters('vnetName'))]",
 				"[concat('Microsoft.Network/publicIpAddresses/', parameters('publicIpAddressName'))]",
 				"[concat('Microsoft.Network/networkSecurityGroups/', parameters('networkSecurityGroupName'))]"
 			],
