@@ -170,7 +170,7 @@
 							"fileUris": [
 								"[concat(parameters('setupScriptLocation'), parameters('setupScriptFileName'), parameters('securityToken'))]"
 							],
-							"commandToExecute": "[concat('powershell -ExecutionPolicy bypass -File ',parameters('setupScriptFileName'),' -packages ',parameters('chocolateyPackages'), ' -labSource ', parameters('labSource'))]"
+							"commandToExecute": "[concat('powershell -ExecutionPolicy bypass -File ',parameters('setupScriptFileName'),' -packages \"', parameters('chocolateyPackages'), '\" -labSource \"', parameters('labSource'), '\"')]"
 						}
 					}
 				}
