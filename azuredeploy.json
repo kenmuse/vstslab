@@ -91,7 +91,7 @@
 		},
 		"chocolateyPackages": {
 			"type": "string",
-			"defaultValue": "eclipse",
+			"defaultValue": "eclipse;dotnetcore-sdk",
 			"metadata": {
 				"description": "List of Chocolatey packages to install, separated by a semi-colon eg. linqpad;sysinternals"
 			}
